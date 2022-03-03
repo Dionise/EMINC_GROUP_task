@@ -1,0 +1,92 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body style="background: #edf2f7;" >
+  <div style="padding:40px; margin:0">
+    {% if number%}
+    <p>Number of available documents of patient: {{number}}</p>
+    {% endif %}
+    <form  id="message" method='POST'>
+        {% csrf_token %}
+       
+            <div class="input-group">
+         <input id="value" type="search" name="search" placeholder="patient id" class="form-control">
+         <div class="input-group-btn">  
+         <button class="btn btn-primary" type="submit">
+          <span class="glyphicon glyphicon-search"></span>
+            </button>
+           
+          </div>
+        </div>
+     </form> 
+     <small style="font-weight: 600;color: green;" id="massage"></small>
+    </div>
+
+
+    <div id="showresults1">
+      
+      
+      
+      <div>
+
+</body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<script>
+
+$('#message').on('submit', function(e){      
+               e.preventDefault();
+                 $.ajax({
+                      type : 'POST', 
+                      url: '',
+                      data: {
+                       value : $('#value').val(),
+                       csrfmiddlewaretoken: '{{ csrf_token }}',
+                       dataType: "json",
+                      },
+                      success:function (data) {
+                        //$('.massage').text(res.msg);
+                        document.getElementById('massage').innerHTML = data._id;
+                         var comm = `    
+                         <h2>General Details about ${data.entry[0].resource.name[0].family}</h2>
+                         <table style="width:50% class="padding:40px; margin:0">
+                          <tr>
+                            <td>Patient Id</td>
+                            <td>${data.entry[0].resource.id}</td>
+                          </tr>
+                          <tr>
+                            <td>Name</td>
+                            <td>${data.entry[0].resource.name[0].given}</td>
+                          </tr>
+                          <tr>
+                            <td>Family</td>
+                            <td>${data.entry[0].resource.name[0].family}</td>
+                          </tr>
+                          <tr>
+                            <td>Gender</td>
+                            <td>${data.entry[0].resource.gender}</td>
+                          </tr>
+                        </table>
+                       `
+                       $('#showresults1').append(comm) 
+
+
+                         }
+                  }); 
+                       });
+  
+  
+  
+  </script>
+</html>
+
+

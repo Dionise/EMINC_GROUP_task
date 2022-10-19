@@ -17,16 +17,7 @@ In this task I used ⚒️ :
 https://user-images.githubusercontent.com/17948715/154920058-75e11a8c-7082-4ee5-a4e7-988e71897471.mov
 
 
-🚀 You can check the working project at http://178.128.36.56
-This is the real ID of the Patient, which you can type in search input:
-  
-6e4ac285-2a8d-a30d-5ecb-e32cb595a876\
-3635f0e6-d517-43f9-c4b2-61ea16a60fa3\
-9ce2b3c9-0f19-e01b-d789-5cb0609583e6\
-9c02362b-0a48-be5e-7296-e332e383ebd2
-
-
-Note: In continues, we can create a form with multiple fields which would help the annalistic team to be classified our patient data  using aggregation methods instead of finding just one Patient by ID.
+🚀 Note: In continues, we can create a form with multiple fields which would help the annalistic team to be classified our patient data  using aggregation methods instead of finding just one Patient by ID.
 
 
 
